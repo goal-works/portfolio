@@ -14,6 +14,7 @@
     "test:e2e": "playwright test",
     "verify:pages": "node scripts/verify-pages-export.mjs",
     "verify:live": "PORTFOLIO_VERIFY_URL=https://goal-works.github.io node scripts/verify-pages-export.mjs",
+    "verify:secure-live": "PORTFOLIO_REQUIRE_RESPONSE_HEADERS=true node scripts/verify-pages-export.mjs",
     "validate": "npm run lint && npm run typecheck && npm run test && npm run build"
   },
   "engines": {

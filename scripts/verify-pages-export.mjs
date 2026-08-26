@@ -1,5 +1,5 @@
 import { createReadStream } from "node:fs";
-import { access, stat } from "node:fs/promises";
+import { access, readFile, stat } from "node:fs/promises";
 import { createServer } from "node:http";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -8,8 +8,10 @@ import { chromium } from "@playwright/test";
 
 const outputDirectory = path.resolve(fileURLToPath(new URL("../out/", import.meta.url)));
 const configuredBaseUrl = process.env.PORTFOLIO_VERIFY_URL?.replace(/\/+$/, "");
+const requireResponseHeaders = process.env.PORTFOLIO_REQUIRE_RESPONSE_HEADERS === "true";
 const requiredFiles = [
   ".nojekyll",
+  "_headers",
   "404.html",
   "index.html",
   "robots.txt",
@@ -22,6 +24,18 @@ if (!configuredBaseUrl) {
   await Promise.all(
     requiredFiles.map((file) => access(path.join(outputDirectory, file))),
   );
+
+  const headers = await readFile(path.join(outputDirectory, "_headers"), "utf8");
+  for (const policy of [
+    "frame-ancestors 'none'",
+    "Permissions-Policy:",
+    "X-Content-Type-Options: nosniff",
+    "X-Frame-Options: DENY",
+  ]) {
+    if (!headers.includes(policy)) {
+      throw new Error(`Static export _headers is missing ${policy}`);
+    }
+  }
 }
 
 const contentTypes = new Map([
@@ -116,6 +130,21 @@ try {
   for (const [route, canonical] of routes) {
     const response = await page.goto(`${baseUrl}${route}`, { waitUntil: "networkidle" });
     if (response?.status() !== 200) throw new Error(`${route} returned ${response?.status()}`);
+    if (route === "/" && requireResponseHeaders) {
+      const headers = response.headers();
+      if (!headers["content-security-policy"]?.includes("frame-ancestors 'none'")) {
+        throw new Error("Live response CSP does not prevent framing");
+      }
+      if (headers["x-frame-options"] !== "DENY") {
+        throw new Error("Live response is missing X-Frame-Options: DENY");
+      }
+      if (headers["x-content-type-options"] !== "nosniff") {
+        throw new Error("Live response is missing X-Content-Type-Options: nosniff");
+      }
+      if (!headers["permissions-policy"]) {
+        throw new Error("Live response is missing Permissions-Policy");
+      }
+    }
     if ((await page.locator("h1").count()) !== 1) throw new Error(`${route} needs one h1`);
     const canonicalHref = await page.locator('link[rel="canonical"]').getAttribute("href");
     if (canonicalHref !== canonical) {
@@ -138,6 +167,13 @@ try {
   const referrer = await page.locator('meta[name="referrer"]').getAttribute("content");
   if (referrer !== "strict-origin-when-cross-origin") {
     throw new Error(`Unexpected referrer policy: ${referrer ?? "missing"}`);
+  }
+
+  const contactHref = await page
+    .getByRole("link", { name: "goal.works.box@gmail.com" })
+    .getAttribute("href");
+  if (contactHref !== "mailto:goal.works.box@gmail.com") {
+    throw new Error(`Unexpected contact link: ${contactHref ?? "missing"}`);
   }
 
   const contentSecurityPolicy = await page

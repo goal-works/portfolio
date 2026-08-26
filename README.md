@@ -58,6 +58,15 @@ npm run verify:live
 
 The export includes `.nojekyll` so GitHub Pages serves Next.js `_next` assets correctly. It also embeds a restrictive content-security policy and referrer policy in the HTML. GitHub Pages enforces HTTPS and HSTS, but it does not provide repository-level custom response headers; headers such as `frame-ancestors` and `X-Content-Type-Options` would require a host or reverse proxy with header configuration.
 
+The export also includes a validated `_headers` policy for static hosts such as Cloudflare
+Pages or Netlify. It adds clickjacking, content-type, permissions, referrer, transport,
+and CSP response protections. After connecting a configurable host, verify the real
+responses with:
+
+```bash
+PORTFOLIO_VERIFY_URL=https://your-owned-host.example npm run verify:secure-live
+```
+
 ## Validation
 
 ```bash
