@@ -35,10 +35,9 @@ export default function WorkPage() {
             </p>
           </div>
           <p className="mt-12 border-l-2 border-accent pl-5 font-mono text-xs uppercase leading-relaxed tracking-[0.1em] text-muted md:ml-[33.333%]">
-            All flagship projects remain in development. EvalForge,
-            AgentScope, and EstateAI now have locally validated V1
-            implementations and captured evidence; LaunchKit AI remains an
-            implementation blueprint.
+            All flagship projects remain in development, and each now has a
+            locally validated V1 implementation with captured product and
+            architecture evidence.
           </p>
         </Container>
       </section>

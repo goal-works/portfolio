@@ -12,6 +12,7 @@ export default defineConfig([
     "evalforge/**",
     "agentscope/**",
     "estate-ai/**",
+    "launchkit-ai/**",
     "next-env.d.ts",
   ]),
 ]);

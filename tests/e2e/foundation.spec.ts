@@ -48,14 +48,7 @@ test("Stage 2 sections and flagship projects render in the required order", asyn
   ]);
 
   await expect(page.locator("#selected-work article")).toHaveCount(4);
-  for (const title of ["LaunchKit AI"]) {
-    const project = page.locator("#selected-work article").filter({ hasText: title });
-    await expect(project).toContainText("In Development");
-    await expect(project).toContainText("Implementation blueprint · evidence pending");
-    await expect(project.getByRole("link", { name: "View blueprint" })).toBeVisible();
-  }
-
-  for (const title of ["EvalForge", "AgentScope", "EstateAI"]) {
+  for (const title of ["EvalForge", "AgentScope", "EstateAI", "LaunchKit AI"]) {
     const project = page.locator("#selected-work article").filter({ hasText: title });
     await expect(project).toContainText("Validated V1 · product evidence available");
     await expect(project.getByRole("link", { name: "View case study" })).toBeVisible();
@@ -74,9 +67,9 @@ test("work index lists every flagship blueprint in order", async ({ page }) => {
     "EstateAI",
     "LaunchKit AI",
   ]);
-  await expect(page.getByText("In Development", { exact: true })).toHaveCount(5);
-  await expect(page.getByRole("link", { name: "View blueprint" })).toHaveCount(1);
-  await expect(page.getByRole("link", { name: "View case study" })).toHaveCount(3);
+  await expect(page.getByText("In Development", { exact: true })).toHaveCount(4);
+  await expect(page.getByRole("link", { name: "View blueprint" })).toHaveCount(0);
+  await expect(page.getByRole("link", { name: "View case study" })).toHaveCount(4);
   await expect(page).toHaveTitle("Work | James");
 });
 
@@ -106,24 +99,18 @@ const projectRoutes = [
 ] as const;
 
 for (const [slug, title, nextTitle] of projectRoutes) {
-  test(`${title} blueprint is statically accessible and honest`, async ({ page }) => {
+  test(`${title} case study is statically accessible and honest`, async ({ page }) => {
     const response = await page.goto(`/work/${slug}`);
 
     expect(response?.status()).toBe(200);
     await expect(page.getByRole("heading", { level: 1 })).toHaveText(title);
     await expect(page.locator("main > section")).toHaveCount(12);
 
-    if (slug !== "launchkit-ai") {
-      await expect(page.getByText("Validated implementation", { exact: true })).toBeVisible();
-      await expect(page.getByText("In Development", { exact: true })).toHaveCount(2);
-      const visualCount = slug === "estate-ai" ? 5 : 4;
-      await expect(page.getByText(`${visualCount} validated visuals`, { exact: true })).toBeVisible();
-      await expect(page.getByText("Evidence pending", { exact: true })).toHaveCount(0);
-    } else {
-      await expect(page.getByText("Implementation blueprint", { exact: true })).toBeVisible();
-      await expect(page.getByText("In Development", { exact: true })).toHaveCount(3);
-      await expect(page.getByText("Evidence pending", { exact: true })).toBeVisible();
-    }
+    await expect(page.getByText("Validated implementation", { exact: true })).toBeVisible();
+    await expect(page.getByText("In Development", { exact: true })).toHaveCount(2);
+    const visualCount = slug === "estate-ai" || slug === "launchkit-ai" ? 5 : 4;
+    await expect(page.getByText(`${visualCount} validated visuals`, { exact: true })).toBeVisible();
+    await expect(page.getByText("Evidence pending", { exact: true })).toHaveCount(0);
 
     await expect(page.locator('a[href^="http"]')).toHaveCount(0);
     await expect(page.getByRole("navigation", { name: "Next project" })).toContainText(

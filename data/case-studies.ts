@@ -295,89 +295,90 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: "launchkit-ai",
     overview:
-      "LaunchKit AI is planned as a production-oriented multi-tenant SaaS foundation for AI products. It is currently in development; this blueprint focuses on tenant-aware authorization, metering, and auditability.",
+      "LaunchKit AI is a working V1 multi-tenant SaaS control plane for AI products. The TypeScript implementation combines signed demo sessions, organization switching, server-enforced roles, invitations, workspaces, one-time API keys, usage metering, budget policy, audit evidence, notifications, and signed webhook jobs over entirely synthetic data.",
     problem:
-      "SaaS foundations must protect tenant boundaries while coordinating membership, permissions, secrets, usage, billing state, jobs, and administrative history. The planned system will make those boundaries explicit and testable.",
+      "SaaS foundations must protect tenant boundaries while coordinating membership, permissions, secrets, usage, billing state, jobs, and administrative history. LaunchKit makes each authorization step explicit and keeps resource ownership testable independently from client-side visibility.",
     architectureSummary:
-      "The planned TypeScript-heavy architecture resolves every protected action through membership, organization, permission, and resource ownership before reading or mutating tenant data.",
+      "Next.js route handlers decode a signed actor context and call a service that resolves current membership, role permissions, organization, and resource ownership before every protected read or mutation. The service persists through an atomic in-memory adapter or row-locked PostgreSQL document and dispatches webhook work inline or through Redis.",
     architecture: [
       {
         shortLabel: "App",
         title: "Next.js application",
-        description: "Planned product UI, server actions, and tenant-aware request boundaries.",
+        description: "Responsive product UI, server components, signed session cookies, and tenant-aware route handlers.",
       },
       {
         shortLabel: "AuthZ",
         title: "Authorization service",
-        description: "Planned membership, role, permission, and resource ownership checks.",
+        description: "Membership, current role, permission, organization, and resource ownership checks on the server.",
       },
       {
         shortLabel: "State",
         title: "PostgreSQL",
-        description: "Planned tenant-scoped domain, usage, audit, and delivery records.",
+        description: "Row-locked JSONB transactions for tenant-scoped domain, usage, audit, job, and delivery records.",
       },
       {
         shortLabel: "Async",
         title: "Redis and background worker",
-        description: "Planned notifications, webhooks, and deferred processing.",
+        description: "Tenant-bearing webhook jobs processed through the same service authorization boundary.",
       },
     ],
     decisions: [
       {
         title: "Server-side authorization",
         description:
-          "Authentication alone is insufficient; every planned protected operation will enforce tenant and permission checks on the server.",
+          "Authentication alone is insufficient; every protected operation resolves durable membership and role permissions before using organization-qualified resource lookups.",
       },
       {
         title: "Write-only secret reveal",
         description:
-          "Planned API keys will be shown only when created, with non-reversible values stored afterward.",
+          "Cryptographic API keys and per-endpoint webhook secrets are shown only when created, with non-reversible digests stored and sensitive fields removed from snapshots.",
       },
       {
         title: "Auditable administration",
         description:
-          "Meaningful membership, key, billing, and configuration actions are planned to create tenant-scoped audit events.",
+          "Membership, workspace, key, billing, organization, and webhook mutations create actor-attributed, tenant-scoped audit events.",
       },
     ],
     capabilities: [
       {
         title: "Organizations and workspaces",
-        description: "Planned creation, switching, invitations, memberships, and scoped resources.",
+        description: "Create and switch organizations, invite role-bound members, and manage tenant-scoped development or production workspaces.",
       },
       {
         title: "Roles and permissions",
-        description: "Planned owner, admin, developer, member, and viewer authorization.",
+        description: "Exercise Owner, Admin, Developer, Member, and Viewer profiles with independent UI and server enforcement.",
       },
       {
         title: "Usage and subscriptions",
-        description: "Planned AI token, cost, latency, quota, and Stripe test-state tracking.",
+        description: "Attribute synthetic provider, model, token, cost, latency, and actor records; update budget warnings through billing permissions.",
       },
       {
         title: "Operational controls",
-        description: "Planned API keys, audit logs, background jobs, and webhook history.",
+        description: "Issue and revoke API keys, inspect audit events, register HTTPS webhooks, and record signed job delivery history.",
       },
     ],
     deepDive: {
-      title: "Tenant-aware authorization",
+      title: "Tenant-aware authorization and one-time secrets",
       summary:
-        "The primary planned deep dive follows authorization from user identity through membership, role, permission, organization, and resource ownership.",
+        "A protected request becomes an actor only after its HMAC session passes verification. The service re-resolves membership and role from state, checks the operation's permission, qualifies resources by organization, and records audit evidence. API and webhook secrets cross the response boundary once while only digests remain in durable state.",
       focus: [
         "Membership and active-tenant resolution",
         "Role-to-permission checks",
         "Resource ownership constraints",
-        "Cross-tenant isolation tests",
+        "One-time secret and HMAC boundaries",
       ],
     },
     reliability: [
-      "Planned role and permission matrix tests",
-      "Planned cross-tenant access tests",
-      "Planned API-key lifecycle and secret-handling tests",
-      "Planned usage aggregation and audit-event tests",
+      "13 domain tests cover session tampering, membership, roles, cross-tenant access, audit evidence, one-time secrets, metering, billing permissions, invitations, and signed webhooks.",
+      "ESLint, strict TypeScript, and the optimized Next.js production build pass across all product routes.",
+      "20 Playwright tests validate authentication and full workflows at three viewport widths; Axe reports no serious or critical violations across eight product routes.",
+      "The four-service Compose definition for Next.js, PostgreSQL, Redis, and the worker passes static parsing; runtime startup remains unverified in the current read-only Snap Docker environment.",
     ],
     tradeoffs: [
-      "A TypeScript-heavy stack keeps the V1 architecture cohesive.",
-      "Stripe behavior will remain in test mode until real deployment requirements exist.",
-      "A separate Python service is excluded unless a concrete requirement justifies it.",
+      "A TypeScript-only service boundary keeps V1 authorization and domain behavior cohesive; a separate Python service is excluded without a concrete requirement.",
+      "The PostgreSQL adapter uses a row-locked JSONB document for inspectable atomic V1 behavior; normalized migrated tables are required for production scale and database-level constraints.",
+      "Demo authentication is intentionally not a production identity provider, and synthetic webhook delivery does not contact external endpoints.",
+      "Stripe remains disabled unless explicit test-only credentials are configured, so no checkout or charge is implied by the seeded subscription state.",
     ],
   },
 ];

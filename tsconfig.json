@@ -27,5 +27,5 @@
     "**/*.ts",
     "**/*.tsx"
   ],
-  "exclude": ["agentscope", "estate-ai", "evalforge", "node_modules"]
+  "exclude": ["agentscope", "estate-ai", "evalforge", "launchkit-ai", "node_modules"]
 }

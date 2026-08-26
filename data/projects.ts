@@ -200,11 +200,17 @@ export const flagshipProjects: Project[] = [
     order: 4,
     title: "LaunchKit AI",
     category: "Production SaaS Architecture",
+    year: "2026",
     summary:
-      "A production-oriented multi-tenant SaaS foundation demonstrating organizations, workspaces, role-based authorization, subscriptions, API keys, usage metering, background processing, webhooks, audit logs, and AI cost tracking.",
+      "A production-oriented multi-tenant SaaS control plane demonstrating organizations, workspaces, server-enforced authorization, one-time secrets, usage metering, billing policy, background jobs, signed webhooks, and audit evidence.",
     description:
-      "A production-oriented multi-tenant SaaS foundation for AI products.",
-    roles: ["Product architecture", "Full-stack engineering"],
+      "A production-oriented multi-tenant SaaS control plane for AI products, with explicit tenant isolation and operational evidence.",
+    roles: [
+      "Product design",
+      "Tenant and security architecture",
+      "Full-stack engineering",
+      "Testing and documentation",
+    ],
     technologies: [
       "Next.js",
       "TypeScript",
@@ -215,7 +221,39 @@ export const flagshipProjects: Project[] = [
     ],
     featured: true,
     status: "building",
-    screenshots: [],
+    cover: "/projects/launchkit-ai/dashboard.png",
+    screenshots: [
+      {
+        src: "/projects/launchkit-ai/dashboard.png",
+        alt: "LaunchKit AI operational overview for the Northstar synthetic tenant showing members, workspaces, usage, budget warning, subscription state, and notification evidence.",
+        caption:
+          "The control-plane overview keeps the active tenant, server-resolved role, synthetic disclosure, usage, budget policy, and operational state visible together.",
+      },
+      {
+        src: "/projects/launchkit-ai/members.png",
+        alt: "LaunchKit AI people and permissions screen showing five fictional role profiles, a server-authorized invitation form, and a pending invitation.",
+        caption:
+          "Membership administration exposes all five role profiles while the service independently enforces invitation permissions and tenant ownership.",
+      },
+      {
+        src: "/projects/launchkit-ai/api-keys.png",
+        alt: "LaunchKit AI API key screen showing a non-secret key prefix, active state, revocation control, and one-time issue workflow.",
+        caption:
+          "API-key plaintext is revealed only at creation; durable snapshots retain a digest and short identification prefix instead.",
+      },
+      {
+        src: "/projects/launchkit-ai/webhooks.png",
+        alt: "LaunchKit AI webhook screen showing a fictional HTTPS endpoint, one-time signing-secret registration, and signed synthetic delivery history.",
+        caption:
+          "Per-endpoint signing keys, Redis-ready jobs, and delivery evidence make the asynchronous boundary inspectable without sending external traffic.",
+      },
+      {
+        src: "/projects/launchkit-ai/architecture.svg",
+        alt: "LaunchKit AI architecture connecting Next.js, tenant authorization, domain transactions, PostgreSQL, Redis jobs, and signed webhook delivery.",
+        caption:
+          "Every protected path resolves membership, permission, organization, and resource ownership before persistence or asynchronous work.",
+      },
+    ],
   },
 ];
 

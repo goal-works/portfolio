@@ -87,7 +87,8 @@ test("flagship project evidence remains factual", async () => {
   assert.match(projects, /cover: "\/projects\/evalforge\/dashboard\.png"/);
   assert.match(projects, /cover: "\/projects\/agentscope\/overview\.png"/);
   assert.match(projects, /cover: "\/projects\/estate-ai\/discovery\.png"/);
-  assert.equal((projects.match(/year: "/g) ?? []).length, 3);
+  assert.match(projects, /cover: "\/projects\/launchkit-ai\/dashboard\.png"/);
+  assert.equal((projects.match(/year: "/g) ?? []).length, 4);
 });
 
 test("Stage 3 defines one structured case study for every flagship project", async () => {
@@ -98,14 +99,15 @@ test("Stage 3 defines one structured case study for every flagship project", asy
   }
 
   assert.equal((caseStudies.match(/slug: "/g) ?? []).length, 4);
-  assert.equal((caseStudies.match(/currently in development/g) ?? []).length, 1);
+  assert.equal((caseStudies.match(/currently in development/g) ?? []).length, 0);
   assert.match(caseStudies, /21 backend tests cover evaluator behavior/);
   assert.match(caseStudies, /Playwright validates benchmark creation/);
   assert.match(caseStudies, /14 backend and SDK tests cover ingestion validation/);
   assert.match(caseStudies, /Nine Playwright tests validate the primary workflows/);
   assert.match(caseStudies, /15 backend tests cover finance formulas/);
   assert.match(caseStudies, /15 Playwright tests validate discovery through comparison/);
-  assert.match(caseStudies, /Planned cross-tenant access tests/);
+  assert.match(caseStudies, /13 domain tests cover session tampering/);
+  assert.match(caseStudies, /20 Playwright tests validate authentication/);
 });
 
 test("the project route is statically generated from centralized metadata", async () => {

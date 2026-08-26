@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title description">
+  <title id="title">LaunchKit AI tenant authorization and delivery architecture</title>
+  <description id="description">A Next.js application resolves signed sessions through membership and role permissions before tenant-qualified service operations reach PostgreSQL. Redis dispatches webhook jobs to a worker, while Stripe remains an optional test-only boundary.</description>
+  <rect width="1600" height="1000" fill="#11131a"/>
+  <text x="100" y="105" fill="#b9afff" font-family="monospace" font-size="22" letter-spacing="4">LAUNCHKIT AI / TENANT CONTROL PLANE</text>
+  <text x="100" y="165" fill="#f7f7f4" font-family="Arial, sans-serif" font-size="54" font-weight="700">Authorize first. Qualify every resource.</text>
+  <g font-family="Arial, sans-serif">
+    <rect x="100" y="300" width="300" height="250" fill="#1a1d27" stroke="#696f80"/>
+    <text x="130" y="345" fill="#b9afff" font-family="monospace" font-size="17">01 / REQUEST</text>
+    <text x="130" y="405" fill="#f7f7f4" font-size="29" font-weight="700">Next.js product</text>
+    <text x="130" y="452" fill="#bfc3cd" font-size="19">Signed demo session</text>
+    <text x="130" y="486" fill="#bfc3cd" font-size="19">Server components</text>
+    <text x="130" y="520" fill="#bfc3cd" font-size="19">Route-handler API</text>
+    <path d="M400 425H475" stroke="#b8ff5a" stroke-width="4"/>
+    <path d="m463 413 15 12-15 12" fill="none" stroke="#b8ff5a" stroke-width="4"/>
+
+    <rect x="480" y="300" width="280" height="250" fill="#1a1d27" stroke="#696f80"/>
+    <text x="510" y="345" fill="#b9afff" font-family="monospace" font-size="17">02 / AUTHORIZE</text>
+    <text x="510" y="405" fill="#f7f7f4" font-size="29" font-weight="700">Tenant service</text>
+    <text x="510" y="452" fill="#bfc3cd" font-size="19">Membership lookup</text>
+    <text x="510" y="486" fill="#bfc3cd" font-size="19">Role → permission</text>
+    <text x="510" y="520" fill="#bfc3cd" font-size="19">Resource ownership</text>
+    <path d="M760 425H835" stroke="#b8ff5a" stroke-width="4"/>
+    <path d="m823 413 15 12-15 12" fill="none" stroke="#b8ff5a" stroke-width="4"/>
+
+    <rect x="840" y="300" width="280" height="250" fill="#1a1d27" stroke="#696f80"/>
+    <text x="870" y="345" fill="#b9afff" font-family="monospace" font-size="17">03 / TRANSACT</text>
+    <text x="870" y="405" fill="#f7f7f4" font-size="29" font-weight="700">Domain state</text>
+    <text x="870" y="452" fill="#bfc3cd" font-size="19">Tenant-qualified mutation</text>
+    <text x="870" y="486" fill="#bfc3cd" font-size="19">One-time secrets</text>
+    <text x="870" y="520" fill="#bfc3cd" font-size="19">Audit evidence</text>
+    <path d="M1120 425H1195" stroke="#b8ff5a" stroke-width="4"/>
+    <path d="m1183 413 15 12-15 12" fill="none" stroke="#b8ff5a" stroke-width="4"/>
+
+    <rect x="1200" y="300" width="300" height="250" fill="#1a1d27" stroke="#696f80"/>
+    <text x="1230" y="345" fill="#b9afff" font-family="monospace" font-size="17">04 / PERSIST</text>
+    <text x="1230" y="405" fill="#f7f7f4" font-size="29" font-weight="700">PostgreSQL</text>
+    <text x="1230" y="452" fill="#bfc3cd" font-size="19">JSONB state document</text>
+    <text x="1230" y="486" fill="#bfc3cd" font-size="19">Row-locked writes</text>
+    <text x="1230" y="520" fill="#bfc3cd" font-size="19">Versioned revision</text>
+  </g>
+  <rect x="480" y="665" width="640" height="185" fill="#1a1d27" stroke="#696f80"/>
+  <text x="520" y="715" fill="#b9afff" font-family="monospace" font-size="17">ASYNCHRONOUS DELIVERY</text>
+  <text x="520" y="766" fill="#f7f7f4" font-family="Arial, sans-serif" font-size="27" font-weight="700">Redis queue → authorized worker → signed evidence</text>
+  <text x="520" y="811" fill="#bfc3cd" font-family="Arial, sans-serif" font-size="19">Per-endpoint HMAC key · digest-only state · synthetic HTTPS endpoints</text>
+  <path d="M980 550V665" stroke="#b8ff5a" stroke-width="3" stroke-dasharray="10 9"/>
+  <text x="100" y="930" fill="#999eaa" font-family="monospace" font-size="17">MEMORY DEMO / POSTGRESQL + REDIS COMPOSE / STRIPE TEST BOUNDARY / V1</text>
+</svg>

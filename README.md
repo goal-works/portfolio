@@ -4,7 +4,7 @@ Technical editorial portfolio for Kazuki (James), an AI-focused software enginee
 
 ## Current status
 
-Stage 9 is complete. The portfolio now presents three locally validated V1 implementations—EvalForge, AgentScope, and EstateAI—with captured product evidence, architecture visuals, implementation decisions, tradeoffs, and exact validation claims. LaunchKit AI remains clearly labeled as an implementation blueprint, while ChainLens and PocketAI remain smaller planned concepts.
+Stage 10 is complete. The portfolio now presents four locally validated V1 implementations—EvalForge, AgentScope, EstateAI, and LaunchKit AI—with captured product evidence, architecture visuals, implementation decisions, tradeoffs, and exact validation claims. ChainLens and PocketAI remain smaller planned concepts.
 
 The site also includes automated accessibility coverage, responsive regression tests, a branded 404, crawler routes, canonical-safe metadata, truthful generated social previews, accurate Person structured data, optimized project imagery, security headers, visible keyboard focus, and reduced-motion support.
 
@@ -13,9 +13,9 @@ The site also includes automated accessibility coverage, responsive regression t
 - **EvalForge** — reproducible AI benchmark authoring, asynchronous evaluation, configurable scoring, and failure analysis.
 - **AgentScope** — dependency-free agent tracing, hierarchical execution evidence, deterministic diagnostics, and trace comparison.
 - **EstateAI** — synthetic property discovery, deterministic financial modeling, persisted scenarios, structured briefs, and comparison.
-- **LaunchKit AI** — a documented multi-tenant SaaS architecture blueprint; implementation evidence remains pending.
+- **LaunchKit AI** — tenant-aware SaaS control-plane infrastructure with server-enforced roles, one-time secrets, metering, audit evidence, and signed webhook jobs.
 
-The three implemented products live in independent local repositories and are intentionally excluded from this portfolio repository. Their validated screenshots and factual case studies are included here.
+The four implemented products live in independent local repositories and are intentionally excluded from this portfolio repository. Their validated screenshots and factual case studies are included here.
 
 ## Local development
 
