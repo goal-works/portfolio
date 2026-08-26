@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
 
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
-import { getSiteUrl } from "@/lib/site-url";
+import { getSiteUrl, getSocialImagePath } from "@/lib/site-url";
 
 import "./globals.css";
 
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     images: metadataBase
       ? [
           {
-            url: "/og/home",
+            url: getSocialImagePath(),
             width: 1200,
             height: 630,
             alt: "Kazuki (James), AI-focused software engineer portfolio preview",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title,
     description,
-    images: metadataBase ? ["/og/home"] : undefined,
+    images: metadataBase ? [getSocialImagePath()] : undefined,
   },
   icons: {
     icon: "/icon.svg",

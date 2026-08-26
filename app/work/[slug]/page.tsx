@@ -15,7 +15,7 @@ import {
   getNextProject,
   getProjectBySlug,
 } from "@/data/projects";
-import { getSiteUrl } from "@/lib/site-url";
+import { getSiteUrl, getSocialImagePath } from "@/lib/site-url";
 
 type ProjectPageProps = Readonly<{
   params: Promise<{ slug: string }>;
@@ -47,7 +47,7 @@ export async function generateMetadata({
       images: siteUrl
         ? [
             {
-              url: `/og/${project.slug}`,
+              url: getSocialImagePath(project.slug),
               width: 1200,
               height: 630,
               alt: `${project.title} validated implementation`,
@@ -59,7 +59,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: `${project.title} — ${project.category} | James`,
       description: project.summary,
-      images: siteUrl ? [`/og/${project.slug}`] : undefined,
+      images: siteUrl ? [getSocialImagePath(project.slug)] : undefined,
     },
   };
 }

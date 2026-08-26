@@ -14,7 +14,7 @@ const requiredFiles = [
   "index.html",
   "robots.txt",
   "sitemap.xml",
-  "og/home",
+  "og/home.png",
   "work/evalforge/index.html",
 ];
 
@@ -131,7 +131,7 @@ try {
   if (layout.scrollWidth > layout.clientWidth) throw new Error("Mobile homepage overflows");
 
   const socialImage = await page.locator('meta[property="og:image"]').getAttribute("content");
-  if (socialImage !== "https://goal-works.github.io/og/home") {
+  if (socialImage !== "https://goal-works.github.io/og/home.png") {
     throw new Error(`Unexpected social image URL: ${socialImage ?? "missing"}`);
   }
 

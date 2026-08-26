@@ -17,3 +17,8 @@ export function getCanonical(path: string): string | undefined {
   const siteUrl = getSiteUrl();
   return siteUrl ? new URL(path, siteUrl).toString() : undefined;
 }
+
+export function getSocialImagePath(slug = "home"): string {
+  const extension = process.env.PORTFOLIO_STATIC_EXPORT === "true" ? ".png" : "";
+  return `/og/${slug}${extension}`;
+}
