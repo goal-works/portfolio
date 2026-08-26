@@ -55,7 +55,7 @@ test("Stage 2 sections and flagship projects render in the required order", asyn
   }
 });
 
-test("work index lists every flagship blueprint in order", async ({ page }) => {
+test("work index lists every flagship case study in order", async ({ page }) => {
   await page.goto("/work");
 
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Selected Work");
@@ -109,10 +109,14 @@ for (const [slug, title, nextTitle] of projectRoutes) {
     await expect(page.getByText("Validated implementation", { exact: true })).toBeVisible();
     await expect(page.getByText("In Development", { exact: true })).toHaveCount(2);
     const visualCount = slug === "estate-ai" || slug === "launchkit-ai" ? 5 : 4;
-    await expect(page.getByText(`${visualCount} validated visuals`, { exact: true })).toBeVisible();
+    await expect(page.getByText(`${visualCount} validated visuals · public repository`, { exact: true })).toBeVisible();
     await expect(page.getByText("Evidence pending", { exact: true })).toHaveCount(0);
 
-    await expect(page.locator('a[href^="http"]')).toHaveCount(0);
+    await expect(page.getByRole("link", { name: "View source repository" })).toHaveAttribute(
+      "href",
+      `https://github.com/goal-works/${slug}`,
+    );
+    await expect(page.locator('a[href^="http"]')).toHaveCount(1);
     await expect(page.getByRole("navigation", { name: "Next project" })).toContainText(
       nextTitle,
     );

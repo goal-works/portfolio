@@ -220,6 +220,16 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             </li>
           ))}
         </ul>
+        {project.repository ? (
+          <a
+            href={project.repository}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-8 inline-flex min-h-11 items-center border-b border-accent font-mono text-xs uppercase tracking-[0.1em] transition-colors hover:text-accent"
+          >
+            View source repository <span className="ml-2" aria-hidden="true">↗</span>
+          </a>
+        ) : null}
       </CaseStudySection>
 
       {nextProject ? <NextProject project={nextProject} /> : null}

@@ -53,6 +53,7 @@ export const flagshipProjects: Project[] = [
     ],
     featured: true,
     status: "building",
+    repository: "https://github.com/goal-works/evalforge",
     cover: "/projects/evalforge/dashboard.png",
     screenshots: [
       {
@@ -106,6 +107,7 @@ export const flagshipProjects: Project[] = [
     ],
     featured: true,
     status: "building",
+    repository: "https://github.com/goal-works/agentscope",
     cover: "/projects/agentscope/overview.png",
     screenshots: [
       {
@@ -161,6 +163,7 @@ export const flagshipProjects: Project[] = [
     ],
     featured: true,
     status: "building",
+    repository: "https://github.com/goal-works/estate-ai",
     cover: "/projects/estate-ai/discovery.png",
     screenshots: [
       {
@@ -221,6 +224,7 @@ export const flagshipProjects: Project[] = [
     ],
     featured: true,
     status: "building",
+    repository: "https://github.com/goal-works/launchkit-ai",
     cover: "/projects/launchkit-ai/dashboard.png",
     screenshots: [
       {

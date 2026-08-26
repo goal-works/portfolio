@@ -81,7 +81,7 @@ test("flagship project evidence remains factual", async () => {
 
   assert.equal((projects.match(/status: "building"/g) ?? []).length, 4);
   assert.equal((projects.match(/featured: true/g) ?? []).length, 4);
-  assert.doesNotMatch(projects, /repository:/);
+  assert.equal((projects.match(/repository: "https:\/\/github\.com\/goal-works\//g) ?? []).length, 4);
   assert.doesNotMatch(projects, /demo:/);
   assert.match(projects, /slug: "evalforge"[\s\S]*year: "2026"/);
   assert.match(projects, /cover: "\/projects\/evalforge\/dashboard\.png"/);
