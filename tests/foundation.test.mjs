@@ -38,6 +38,20 @@ test("baseline metadata uses approved identity and does not guess a domain", asy
   assert.doesNotMatch(siteUrl, /https?:\/\/[\w.-]+/);
 });
 
+test("static exports accept only an explicit secure production origin", async () => {
+  const [packageJson, buildScript, verifier] = await Promise.all([
+    source("package.json"),
+    source("scripts/build-static-export.mjs"),
+    source("scripts/verify-pages-export.mjs"),
+  ]);
+
+  assert.doesNotMatch(packageJson, /NEXT_PUBLIC_SITE_URL=https:\/\//);
+  assert.match(buildScript, /process\.env\.NEXT_PUBLIC_SITE_URL/);
+  assert.match(buildScript, /siteUrl\.protocol !== "https:"/);
+  assert.match(buildScript, /siteUrl\.pathname !== "\/"/);
+  assert.match(verifier, /process\.env\.PORTFOLIO_EXPECTED_SITE_URL/);
+});
+
 test("primary navigation includes the specified destinations", async () => {
   const header = await source("components/layout/header.tsx");
 

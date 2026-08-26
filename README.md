@@ -35,7 +35,7 @@ The development site is available at `http://localhost:3000`.
 
 ## Metadata configuration
 
-Local builds intentionally omit canonical and social-image URLs unless `NEXT_PUBLIC_SITE_URL` is configured. The verified Pages build sets it to `https://goal-works.github.io`, which populates canonical links, sitemap entries, structured data, and social-preview metadata with the real deployment URL.
+Local builds intentionally omit canonical and social-image URLs unless `NEXT_PUBLIC_SITE_URL` is configured. Static exports default to the current `https://goal-works.github.io` production origin and accept an explicit HTTPS origin for a controlled custom host. This populates canonical links, sitemap entries, structured data, and social-preview metadata with the real deployment URL.
 
 ```bash
 cp .env.example .env.local
@@ -49,6 +49,17 @@ The canonical site is published from the generated [`goal-works.github.io`](http
 npm run build:pages
 npm run verify:pages
 ```
+
+For a custom production host, build and verify the artifact against that exact origin:
+
+```bash
+NEXT_PUBLIC_SITE_URL=https://goal.works.com npm run build:pages
+PORTFOLIO_EXPECTED_SITE_URL=https://goal.works.com npm run verify:pages
+PORTFOLIO_VERIFY_URL=https://goal.works.com npm run verify:secure-live
+```
+
+Do not switch the canonical origin or GitHub Pages custom-domain setting until the
+hostname resolves from public DNS and the configurable host serves the validated export.
 
 After publication, verify the real HTTPS deployment with:
 

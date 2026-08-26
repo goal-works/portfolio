@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build --webpack",
-    "build:pages": "PORTFOLIO_STATIC_EXPORT=true NEXT_PUBLIC_SITE_URL=https://goal-works.github.io next build --webpack && node scripts/prepare-pages.mjs",
+    "build:pages": "node scripts/build-static-export.mjs",
     "start": "next start",
     "lint": "eslint . --max-warnings=0",
     "optimize:images": "node scripts/optimize-project-images.mjs",

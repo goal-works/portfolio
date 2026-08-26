@@ -9,6 +9,11 @@ import { chromium } from "@playwright/test";
 const outputDirectory = path.resolve(fileURLToPath(new URL("../out/", import.meta.url)));
 const configuredBaseUrl = process.env.PORTFOLIO_VERIFY_URL?.replace(/\/+$/, "");
 const requireResponseHeaders = process.env.PORTFOLIO_REQUIRE_RESPONSE_HEADERS === "true";
+const expectedSiteUrl = (
+  process.env.PORTFOLIO_EXPECTED_SITE_URL ??
+  configuredBaseUrl ??
+  "https://goal-works.github.io"
+).replace(/\/+$/, "");
 const requiredFiles = [
   ".nojekyll",
   "_headers",
@@ -118,16 +123,16 @@ try {
   });
 
   const routes = [
-    ["/", "https://goal-works.github.io/"],
-    ["/work/", "https://goal-works.github.io/work/"],
-    ["/about/", "https://goal-works.github.io/about/"],
-    ["/work/evalforge/", "https://goal-works.github.io/work/evalforge/"],
-    ["/work/agentscope/", "https://goal-works.github.io/work/agentscope/"],
-    ["/work/estate-ai/", "https://goal-works.github.io/work/estate-ai/"],
-    ["/work/launchkit-ai/", "https://goal-works.github.io/work/launchkit-ai/"],
+    "/",
+    "/work/",
+    "/about/",
+    "/work/evalforge/",
+    "/work/agentscope/",
+    "/work/estate-ai/",
+    "/work/launchkit-ai/",
   ];
 
-  for (const [route, canonical] of routes) {
+  for (const route of routes) {
     const response = await page.goto(`${baseUrl}${route}`, { waitUntil: "networkidle" });
     if (response?.status() !== 200) throw new Error(`${route} returned ${response?.status()}`);
     if (route === "/" && requireResponseHeaders) {
@@ -147,6 +152,7 @@ try {
     }
     if ((await page.locator("h1").count()) !== 1) throw new Error(`${route} needs one h1`);
     const canonicalHref = await page.locator('link[rel="canonical"]').getAttribute("href");
+    const canonical = new URL(route, `${expectedSiteUrl}/`).toString();
     if (canonicalHref !== canonical) {
       throw new Error(`${route} canonical was ${canonicalHref ?? "missing"}`);
     }
@@ -160,7 +166,8 @@ try {
   if (layout.scrollWidth > layout.clientWidth) throw new Error("Mobile homepage overflows");
 
   const socialImage = await page.locator('meta[property="og:image"]').getAttribute("content");
-  if (socialImage !== "https://goal-works.github.io/og/home.png") {
+  const expectedSocialImage = new URL("/og/home.png", `${expectedSiteUrl}/`).toString();
+  if (socialImage !== expectedSocialImage) {
     throw new Error(`Unexpected social image URL: ${socialImage ?? "missing"}`);
   }
 
@@ -197,4 +204,4 @@ try {
   }
 }
 
-console.log(configuredBaseUrl ? "Live portfolio verified" : "GitHub Pages export verified");
+console.log(configuredBaseUrl ? "Live portfolio verified" : "Static portfolio export verified");
