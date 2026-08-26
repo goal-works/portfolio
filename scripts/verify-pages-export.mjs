@@ -7,6 +7,7 @@ import { fileURLToPath } from "node:url";
 import { chromium } from "@playwright/test";
 
 const outputDirectory = path.resolve(fileURLToPath(new URL("../out/", import.meta.url)));
+const configuredBaseUrl = process.env.PORTFOLIO_VERIFY_URL?.replace(/\/+$/, "");
 const requiredFiles = [
   ".nojekyll",
   "404.html",
@@ -17,9 +18,11 @@ const requiredFiles = [
   "work/evalforge/index.html",
 ];
 
-await Promise.all(
-  requiredFiles.map((file) => access(path.join(outputDirectory, file))),
-);
+if (!configuredBaseUrl) {
+  await Promise.all(
+    requiredFiles.map((file) => access(path.join(outputDirectory, file))),
+  );
+}
 
 const contentTypes = new Map([
   [".css", "text/css; charset=utf-8"],
@@ -56,31 +59,39 @@ async function findFile(pathname) {
   return undefined;
 }
 
-const server = createServer(async (request, response) => {
-  const pathname = new URL(request.url ?? "/", "http://127.0.0.1").pathname;
-  const file = await findFile(pathname);
+let server;
+let baseUrl = configuredBaseUrl;
 
-  if (!file) {
-    response.writeHead(404, { "Content-Type": "text/html; charset=utf-8" });
-    createReadStream(path.join(outputDirectory, "404.html")).pipe(response);
-    return;
+if (!baseUrl) {
+  server = createServer(async (request, response) => {
+    const pathname = new URL(request.url ?? "/", "http://127.0.0.1").pathname;
+    const file = await findFile(pathname);
+
+    if (!file) {
+      response.writeHead(404, { "Content-Type": "text/html; charset=utf-8" });
+      createReadStream(path.join(outputDirectory, "404.html")).pipe(response);
+      return;
+    }
+
+    const contentType = pathname.startsWith("/og/")
+      ? "image/png"
+      : contentTypes.get(path.extname(file)) ?? "application/octet-stream";
+    response.writeHead(200, { "Content-Type": contentType });
+    createReadStream(file).pipe(response);
+  });
+
+  await new Promise((resolve, reject) => {
+    server.once("error", reject);
+    server.listen(0, "127.0.0.1", resolve);
+  });
+
+  const address = server.address();
+  if (!address || typeof address === "string") {
+    throw new Error("Static server did not start");
   }
+  baseUrl = `http://127.0.0.1:${address.port}`;
+}
 
-  const contentType = pathname.startsWith("/og/")
-    ? "image/png"
-    : contentTypes.get(path.extname(file)) ?? "application/octet-stream";
-  response.writeHead(200, { "Content-Type": contentType });
-  createReadStream(file).pipe(response);
-});
-
-await new Promise((resolve, reject) => {
-  server.once("error", reject);
-  server.listen(0, "127.0.0.1", resolve);
-});
-
-const address = server.address();
-if (!address || typeof address === "string") throw new Error("Static server did not start");
-const baseUrl = `http://127.0.0.1:${address.port}`;
 const browser = await chromium.launch();
 
 try {
@@ -131,9 +142,11 @@ try {
   }
 } finally {
   await browser.close();
-  await new Promise((resolve, reject) => {
-    server.close((error) => (error ? reject(error) : resolve()));
-  });
+  if (server) {
+    await new Promise((resolve, reject) => {
+      server.close((error) => (error ? reject(error) : resolve()));
+    });
+  }
 }
 
-console.log("GitHub Pages export verified");
+console.log(configuredBaseUrl ? "Live portfolio verified" : "GitHub Pages export verified");

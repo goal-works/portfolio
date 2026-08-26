@@ -4,7 +4,7 @@ Technical editorial portfolio for Kazuki (James), an AI-focused software enginee
 
 ## Current status
 
-Stage 10 is complete. The portfolio now presents four locally validated V1 implementations—EvalForge, AgentScope, EstateAI, and LaunchKit AI—with captured product evidence, architecture visuals, implementation decisions, tradeoffs, and exact validation claims. ChainLens and PocketAI remain smaller planned concepts.
+The launch implementation is complete and published at **[goal-works.github.io](https://goal-works.github.io/)**. The portfolio presents four validated V1 implementations—EvalForge, AgentScope, EstateAI, and LaunchKit AI—with captured product evidence, architecture visuals, implementation decisions, tradeoffs, and exact validation claims. ChainLens and PocketAI remain smaller planned concepts.
 
 The site also includes automated accessibility coverage, responsive regression tests, a branded 404, crawler routes, canonical-safe metadata, truthful generated social previews, accurate Person structured data, optimized project imagery, security headers, visible keyboard focus, and reduced-motion support.
 
@@ -35,11 +35,28 @@ The development site is available at `http://localhost:3000`.
 
 ## Metadata configuration
 
-Set `NEXT_PUBLIC_SITE_URL` only after a real deployment URL is available. Until then, the site intentionally omits absolute canonical and social-image URLs and emits an empty sitemap rather than publishing an invented domain. Once configured, the same verified URL populates canonical links, sitemap entries, and social-preview metadata.
+Local builds intentionally omit canonical and social-image URLs unless `NEXT_PUBLIC_SITE_URL` is configured. The verified Pages build sets it to `https://goal-works.github.io`, which populates canonical links, sitemap entries, structured data, and social-preview metadata with the real deployment URL.
 
 ```bash
 cp .env.example .env.local
 ```
+
+## Deployment
+
+The canonical site is published from the generated [`goal-works.github.io`](https://github.com/goal-works/goal-works.github.io) repository. Build and verify the exact static artifact with:
+
+```bash
+npm run build:pages
+npm run verify:pages
+```
+
+After publication, verify the real HTTPS deployment with:
+
+```bash
+npm run verify:live
+```
+
+The export includes `.nojekyll` so GitHub Pages serves Next.js `_next` assets correctly. Server-mode builds retain the configured security headers; the static deployment uses GitHub Pages' HTTPS and response policy.
 
 ## Validation
 
