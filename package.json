@@ -5,11 +5,13 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build --webpack",
+    "build:pages": "PORTFOLIO_STATIC_EXPORT=true NEXT_PUBLIC_SITE_URL=https://goal-works.github.io next build --webpack && node scripts/prepare-pages.mjs",
     "start": "next start",
     "lint": "eslint . --max-warnings=0",
     "typecheck": "tsc --noEmit",
     "test": "node --test",
     "test:e2e": "playwright test",
+    "verify:pages": "node scripts/verify-pages-export.mjs",
     "validate": "npm run lint && npm run typecheck && npm run test && npm run build"
   },
   "engines": {

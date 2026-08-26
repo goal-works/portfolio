@@ -8,6 +8,8 @@ type ProjectImageRouteProps = Readonly<{
   params: Promise<{ slug: string }>;
 }>;
 
+export const dynamic = "force-static";
+
 export function generateStaticParams() {
   return flagshipProjects.map((project) => ({ slug: project.slug }));
 }
