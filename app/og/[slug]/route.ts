@@ -20,13 +20,11 @@ export async function GET(_request: Request, { params }: ProjectImageRouteProps)
     return new Response("Not found", { status: 404 });
   }
 
-  const hasEvidence = project.screenshots.length > 0;
-
   return new ImageResponse(
     createElement(SocialImage, {
-      eyebrow: hasEvidence ? "Validated V1" : "In Development",
+      eyebrow: "Validated V1",
       title: project.title,
-      description: `${project.category} · ${hasEvidence ? "Validated implementation" : "Implementation blueprint"}`,
+      description: `${project.category} · Validated implementation`,
     }),
     { width: 1200, height: 630 },
   );

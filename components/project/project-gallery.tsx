@@ -7,20 +7,6 @@ type ProjectGalleryProps = Readonly<{
 }>;
 
 export function ProjectGallery({ project }: ProjectGalleryProps) {
-  if (project.screenshots.length === 0) {
-    return (
-      <div className="border border-dashed border-border bg-surface p-8 sm:p-12">
-        <p className="font-mono text-xs uppercase tracking-[0.12em] text-accent">
-          Evidence pending
-        </p>
-        <p className="mt-5 max-w-[54ch] text-lg leading-relaxed text-secondary">
-          Product screenshots will be added only after the implementation exists
-          and the captured workflow can be validated.
-        </p>
-      </div>
-    );
-  }
-
   return (
     <ul className="grid gap-8">
       {project.screenshots.map((screenshot) => (

@@ -9,7 +9,6 @@ type FeaturedProjectProps = Readonly<{
 
 export function FeaturedProject({ project }: FeaturedProjectProps) {
   const order = String(project.order).padStart(2, "0");
-  const hasEvidence = project.screenshots.length > 0;
 
   return (
     <article className="scroll-mt-24 border-t border-border pt-8 md:pt-12">
@@ -39,15 +38,13 @@ export function FeaturedProject({ project }: FeaturedProjectProps) {
           <div className="md:col-span-3">
             <ProjectStatus status={project.status} />
             <p className="mt-6 font-mono text-xs uppercase leading-relaxed tracking-[0.1em] text-muted">
-              {hasEvidence
-                ? "Validated V1 · product evidence available"
-                : "Implementation blueprint · evidence pending"}
+              Validated V1 · product evidence available
             </p>
             <Link
               href={`/work/${project.slug}`}
               className="mt-4 inline-flex min-h-11 items-center border-b border-accent font-mono text-xs uppercase tracking-[0.1em] text-primary transition-colors hover:text-accent"
             >
-              {hasEvidence ? "View case study" : "View blueprint"}{" "}
+              View case study{" "}
               <span aria-hidden="true">→</span>
             </Link>
           </div>
@@ -56,7 +53,7 @@ export function FeaturedProject({ project }: FeaturedProjectProps) {
         <dl className="grid gap-px border border-border bg-border text-sm md:col-span-9 md:col-start-4 md:grid-cols-2">
           <div className="bg-background p-5 sm:p-6">
             <dt className="font-mono text-xs uppercase tracking-[0.1em] text-muted">
-              {hasEvidence ? "Responsibilities" : "Planned role"}
+              Responsibilities
             </dt>
             <dd className="mt-3 leading-relaxed text-secondary">
               {project.roles.join(" · ")}
@@ -64,7 +61,7 @@ export function FeaturedProject({ project }: FeaturedProjectProps) {
           </div>
           <div className="bg-background p-5 sm:p-6">
             <dt className="font-mono text-xs uppercase tracking-[0.1em] text-muted">
-              {hasEvidence ? "Implementation stack" : "Planned stack"}
+              Implementation stack
             </dt>
             <dd className="mt-3 leading-relaxed text-secondary">
               {project.technologies.join(" · ")}

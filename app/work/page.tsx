@@ -44,10 +44,7 @@ export default function WorkPage() {
 
       <Section className="border-t border-border">
         <Container className="grid gap-24 xl:gap-32">
-          {flagshipProjects.map((project) => {
-            const hasEvidence = project.screenshots.length > 0;
-
-            return (
+          {flagshipProjects.map((project) => (
               <article
                 key={project.slug}
                 className="grid gap-8 md:grid-cols-12 md:gap-12"
@@ -76,23 +73,20 @@ export default function WorkPage() {
                   </p>
                   <div>
                     <p className="font-mono text-xs uppercase leading-relaxed tracking-[0.1em] text-muted">
-                      {hasEvidence
-                        ? "Validated V1 · product evidence available"
-                        : "Implementation blueprint · evidence pending"}
+                      Validated V1 · product evidence available
                     </p>
                     <Link
                       href={`/work/${project.slug}`}
                       className="mt-4 inline-flex min-h-11 items-center border-b border-accent font-mono text-xs uppercase tracking-[0.1em] transition-colors hover:text-accent"
                     >
-                      {hasEvidence ? "View case study" : "View blueprint"}{" "}
+                      View case study{" "}
                       <span aria-hidden="true">→</span>
                     </Link>
                   </div>
                 </div>
               </div>
               </article>
-            );
-          })}
+          ))}
         </Container>
       </Section>
 

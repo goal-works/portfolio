@@ -217,7 +217,6 @@ test("social images use truthful code-generated metadata", async () => {
   }
 
   assert.match(projectImage, /getProjectBySlug/);
-  assert.match(projectImage, /Implementation blueprint/);
   assert.match(projectImage, /Validated implementation/);
   assert.match(projectImage, /Validated V1/);
   assert.match(projectImage, /status: 404/);

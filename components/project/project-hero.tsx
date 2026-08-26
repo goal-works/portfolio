@@ -7,8 +7,6 @@ type ProjectHeroProps = Readonly<{
 }>;
 
 export function ProjectHero({ project }: ProjectHeroProps) {
-  const hasEvidence = project.screenshots.length > 0;
-
   return (
     <section className="py-20 md:py-28 xl:py-36">
       <Container>
@@ -22,7 +20,7 @@ export function ProjectHero({ project }: ProjectHeroProps) {
         <div className="grid gap-10 pt-12 md:grid-cols-12 md:pt-16">
           <div className="md:col-span-9">
             <p className="font-mono text-xs uppercase tracking-[0.12em] text-accent">
-              {hasEvidence ? "Validated implementation" : "Implementation blueprint"}
+              Validated implementation
             </p>
             <h1 className="mt-5 text-[clamp(4rem,10vw,9rem)] font-medium leading-[0.82] tracking-[-0.07em]">
               {project.title}

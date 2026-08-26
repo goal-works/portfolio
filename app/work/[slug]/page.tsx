@@ -36,8 +36,6 @@ export async function generateMetadata({
   }
 
   const siteUrl = getSiteUrl();
-  const hasEvidence = project.screenshots.length > 0;
-
   return {
     title: `${project.title} — ${project.category}`,
     description: project.summary,
@@ -52,7 +50,7 @@ export async function generateMetadata({
               url: `/og/${project.slug}`,
               width: 1200,
               height: 630,
-              alt: `${project.title} ${hasEvidence ? "validated implementation" : "implementation blueprint"}`,
+              alt: `${project.title} validated implementation`,
             },
           ]
         : undefined,
@@ -115,8 +113,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   }
 
   const nextProject = getNextProject(slug);
-  const hasEvidence = project.screenshots.length > 0;
-
   return (
     <main id="main-content" className="flex-1">
       <ProjectHero project={project} />
@@ -124,20 +120,18 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       <CaseStudySection
         index="01"
         label="Product preview"
-        title={hasEvidence ? "Validated product capture" : "The interface is not evidence—yet."}
+        title="Validated product capture"
       >
         <ProjectVisual project={project} />
         <p className="mt-5 font-mono text-xs uppercase leading-relaxed tracking-[0.1em] text-muted">
-          {hasEvidence
-            ? "Captured from the locally validated product using deterministic demo data."
-            : "Abstract placeholder only. A validated product capture will replace it after implementation."}
+          Captured from the locally validated product using deterministic demo data.
         </p>
       </CaseStudySection>
 
       <CaseStudySection
         index="02"
         label="Overview"
-        title={hasEvidence ? "Implemented product" : "Planned product direction"}
+        title="Implemented product"
       >
         <p className="max-w-[68ch] text-xl leading-relaxed text-secondary">
           {caseStudy.overview}
@@ -167,7 +161,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       <CaseStudySection
         index="05"
         label="Engineering decisions"
-        title={hasEvidence ? "Implemented design decisions" : "Planned design decisions"}
+        title="Implemented design decisions"
       >
         <ItemGrid items={caseStudy.decisions} />
       </CaseStudySection>
@@ -175,7 +169,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       <CaseStudySection
         index="06"
         label="Product capabilities"
-        title={hasEvidence ? "Implemented V1 capabilities" : "V1 capability plan"}
+        title="Implemented V1 capabilities"
       >
         <ItemGrid items={caseStudy.capabilities} />
       </CaseStudySection>
@@ -191,7 +185,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       <CaseStudySection
         index="08"
         label="Testing and reliability"
-        title={hasEvidence ? "Validation evidence" : "Evidence the implementation must earn"}
+        title="Validation evidence"
       >
         <NumberedList items={caseStudy.reliability} />
       </CaseStudySection>
@@ -211,11 +205,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       <CaseStudySection
         index="11"
         label="Technology"
-        title={hasEvidence ? "Implementation stack" : "Planned implementation stack"}
+        title="Implementation stack"
       >
         <ul
           className="flex flex-wrap gap-2"
-          aria-label={hasEvidence ? "Implementation technologies" : "Planned technologies"}
+          aria-label="Implementation technologies"
         >
           {project.technologies.map((technology) => (
             <li

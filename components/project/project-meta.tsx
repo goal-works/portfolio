@@ -6,9 +6,8 @@ type ProjectMetaProps = Readonly<{
 }>;
 
 export function ProjectMeta({ project }: ProjectMetaProps) {
-  const hasEvidence = project.screenshots.length > 0;
   const evidence = [
-    hasEvidence ? `${project.screenshots.length} validated visuals` : null,
+    `${project.screenshots.length} validated visuals`,
     project.repository ? "public repository" : null,
     project.demo ? "deployed demo" : null,
   ].filter(Boolean);
@@ -28,14 +27,12 @@ export function ProjectMeta({ project }: ProjectMetaProps) {
           Evidence
         </dt>
         <dd className="mt-4 text-sm leading-relaxed text-secondary">
-          {evidence.length > 0
-            ? evidence.join(" · ")
-            : "Implementation, repository, demo, and screenshots pending."}
+          {evidence.join(" · ")}
         </dd>
       </div>
       <div className="bg-background p-5 sm:p-6">
         <dt className="font-mono text-xs uppercase tracking-[0.1em] text-muted">
-          {hasEvidence ? "Responsibilities" : "Planned responsibilities"}
+          Responsibilities
         </dt>
         <dd className="mt-4 text-sm leading-relaxed text-secondary">
           {project.roles.join(" · ")}
@@ -43,7 +40,7 @@ export function ProjectMeta({ project }: ProjectMetaProps) {
       </div>
       <div className="bg-background p-5 sm:p-6">
         <dt className="font-mono text-xs uppercase tracking-[0.1em] text-muted">
-          {hasEvidence ? "Implementation stack" : "Planned stack"}
+          Implementation stack
         </dt>
         <dd className="mt-4 text-sm leading-relaxed text-secondary">
           {project.technologies.join(" · ")}
