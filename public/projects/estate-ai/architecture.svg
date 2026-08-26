@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title description">
+  <title id="title">EstateAI deterministic property analysis architecture</title>
+  <description id="description">The Next.js product sends property and scenario inputs to FastAPI. A Decimal-based finance core calculates authoritative metrics, PostgreSQL stores synthetic records and scenarios, and a structured demo brief explains only supplied application data.</description>
+  <rect width="1600" height="1000" fill="#10251d"/>
+  <text x="100" y="105" fill="#e1b35d" font-family="monospace" font-size="22" letter-spacing="4">ESTATEAI / SYSTEM ARCHITECTURE</text>
+  <text x="100" y="165" fill="#f7f3e8" font-family="Arial, sans-serif" font-size="54" font-weight="700">Authoritative math. Inspectable assumptions.</text>
+  <g font-family="Arial, sans-serif">
+    <rect x="100" y="300" width="300" height="250" fill="#19392d" stroke="#8ba797"/>
+    <text x="130" y="345" fill="#e1b35d" font-family="monospace" font-size="17">01 / EXPLORE</text>
+    <text x="130" y="405" fill="#f7f3e8" font-size="29" font-weight="700">Next.js product</text>
+    <text x="130" y="452" fill="#c4d0c7" font-size="19">Discovery + map</text>
+    <text x="130" y="486" fill="#c4d0c7" font-size="19">Property analysis</text>
+    <text x="130" y="520" fill="#c4d0c7" font-size="19">Scenarios + comparison</text>
+    <path d="M400 425H475" stroke="#e1b35d" stroke-width="4"/>
+    <path d="m463 413 15 12-15 12" fill="none" stroke="#e1b35d" stroke-width="4"/>
+
+    <rect x="480" y="300" width="280" height="250" fill="#19392d" stroke="#8ba797"/>
+    <text x="510" y="345" fill="#e1b35d" font-family="monospace" font-size="17">02 / VALIDATE</text>
+    <text x="510" y="405" fill="#f7f3e8" font-size="29" font-weight="700">FastAPI service</text>
+    <text x="510" y="452" fill="#c4d0c7" font-size="19">Typed inputs</text>
+    <text x="510" y="486" fill="#c4d0c7" font-size="19">Filter + compare API</text>
+    <text x="510" y="520" fill="#c4d0c7" font-size="19">Clear error boundaries</text>
+    <path d="M760 425H835" stroke="#e1b35d" stroke-width="4"/>
+    <path d="m823 413 15 12-15 12" fill="none" stroke="#e1b35d" stroke-width="4"/>
+
+    <rect x="840" y="300" width="280" height="250" fill="#19392d" stroke="#8ba797"/>
+    <text x="870" y="345" fill="#e1b35d" font-family="monospace" font-size="17">03 / CALCULATE</text>
+    <text x="870" y="405" fill="#f7f3e8" font-size="29" font-weight="700">Finance core</text>
+    <text x="870" y="452" fill="#c4d0c7" font-size="19">Decimal arithmetic</text>
+    <text x="870" y="486" fill="#c4d0c7" font-size="19">Mortgage + NOI</text>
+    <text x="870" y="520" fill="#c4d0c7" font-size="19">Returns + occupancy</text>
+    <path d="M1120 425H1195" stroke="#e1b35d" stroke-width="4"/>
+    <path d="m1183 413 15 12-15 12" fill="none" stroke="#e1b35d" stroke-width="4"/>
+
+    <rect x="1200" y="300" width="300" height="250" fill="#19392d" stroke="#8ba797"/>
+    <text x="1230" y="345" fill="#e1b35d" font-family="monospace" font-size="17">04 / PERSIST</text>
+    <text x="1230" y="405" fill="#f7f3e8" font-size="29" font-weight="700">PostgreSQL</text>
+    <text x="1230" y="452" fill="#c4d0c7" font-size="19">Synthetic properties</text>
+    <text x="1230" y="486" fill="#c4d0c7" font-size="19">Comparables</text>
+    <text x="1230" y="520" fill="#c4d0c7" font-size="19">Saved custom scenarios</text>
+  </g>
+  <rect x="480" y="665" width="640" height="185" fill="#19392d" stroke="#8ba797"/>
+  <text x="520" y="715" fill="#e1b35d" font-family="monospace" font-size="17">STRUCTURED DEMO BRIEF</text>
+  <text x="520" y="766" fill="#f7f3e8" font-family="Arial, sans-serif" font-size="27" font-weight="700">Explanation is downstream from verified calculations.</text>
+  <text x="520" y="811" fill="#c4d0c7" font-family="Arial, sans-serif" font-size="19">Known fields only · no invented market facts · explicit non-advice language</text>
+  <path d="M980 550V665" stroke="#e1b35d" stroke-width="3" stroke-dasharray="10 9"/>
+  <text x="100" y="930" fill="#9fb1a6" font-family="monospace" font-size="17">ORIGINAL SYNTHETIC DATA / OFFLINE MAP GEOMETRY / V1</text>
+</svg>

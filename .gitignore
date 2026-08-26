@@ -1,0 +1,40 @@
+# dependencies
+/node_modules
+
+# Next.js output
+/.next
+/out
+
+# production output
+/build
+/dist
+
+# independent project repositories
+/evalforge/
+/agentscope/
+/estate-ai/
+
+# local agent and browser tooling
+/.agents/
+/.codex/
+/undefined:/
+*lighthouse.*/
+*:Zone.Identifier*
+
+# local environment files
+.env*
+!.env.example
+
+# logs and test output
+*.log
+/coverage
+/playwright-report
+/test-results
+
+# editors and operating systems
+.DS_Store
+*.swp
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts

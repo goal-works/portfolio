@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title description">
+  <title id="title">AgentScope trace ingestion and exploration architecture</title>
+  <description id="description">A Python SDK sends a validated trace graph to FastAPI. FastAPI reconstructs hierarchical spans, persists traces in PostgreSQL, runs deterministic diagnostics, and serves the Next.js explorer.</description>
+  <rect width="1600" height="1000" fill="#090b0e"/>
+  <text x="100" y="105" fill="#73f2b2" font-family="monospace" font-size="22" letter-spacing="4">AGENTSCOPE / SYSTEM ARCHITECTURE</text>
+  <text x="100" y="165" fill="#edf2f7" font-family="Arial, sans-serif" font-size="54" font-weight="700">From agent execution to inspectable evidence.</text>
+  <g font-family="Arial, sans-serif">
+    <rect x="100" y="300" width="270" height="250" fill="#11151a" stroke="#39434f"/>
+    <text x="130" y="345" fill="#73f2b2" font-family="monospace" font-size="17">01 / INSTRUMENT</text>
+    <text x="130" y="405" fill="#edf2f7" font-size="29" font-weight="700">Python SDK</text>
+    <text x="130" y="452" fill="#a6b0bd" font-size="19">Trace context</text>
+    <text x="130" y="486" fill="#a6b0bd" font-size="19">Nested spans</text>
+    <text x="130" y="520" fill="#a6b0bd" font-size="19">Ordered events</text>
+    <path d="M370 425H455" stroke="#73f2b2" stroke-width="4"/>
+    <path d="m443 413 15 12-15 12" fill="none" stroke="#73f2b2" stroke-width="4"/>
+
+    <rect x="460" y="300" width="300" height="250" fill="#11151a" stroke="#39434f"/>
+    <text x="490" y="345" fill="#73f2b2" font-family="monospace" font-size="17">02 / VALIDATE</text>
+    <text x="490" y="405" fill="#edf2f7" font-size="29" font-weight="700">FastAPI ingestion</text>
+    <text x="490" y="452" fill="#a6b0bd" font-size="19">Identity + time checks</text>
+    <text x="490" y="486" fill="#a6b0bd" font-size="19">Two-pass hierarchy</text>
+    <text x="490" y="520" fill="#a6b0bd" font-size="19">Idempotent delivery</text>
+    <path d="M760 425H845" stroke="#73f2b2" stroke-width="4"/>
+    <path d="m833 413 15 12-15 12" fill="none" stroke="#73f2b2" stroke-width="4"/>
+
+    <rect x="850" y="300" width="270" height="250" fill="#11151a" stroke="#39434f"/>
+    <text x="880" y="345" fill="#73f2b2" font-family="monospace" font-size="17">03 / PERSIST</text>
+    <text x="880" y="405" fill="#edf2f7" font-size="29" font-weight="700">PostgreSQL</text>
+    <text x="880" y="452" fill="#a6b0bd" font-size="19">Traces + spans</text>
+    <text x="880" y="486" fill="#a6b0bd" font-size="19">Events + metrics</text>
+    <text x="880" y="520" fill="#a6b0bd" font-size="19">Diagnostic evidence</text>
+    <path d="M1120 425H1205" stroke="#73f2b2" stroke-width="4"/>
+    <path d="m1193 413 15 12-15 12" fill="none" stroke="#73f2b2" stroke-width="4"/>
+
+    <rect x="1210" y="300" width="290" height="250" fill="#11151a" stroke="#39434f"/>
+    <text x="1240" y="345" fill="#73f2b2" font-family="monospace" font-size="17">04 / EXPLORE</text>
+    <text x="1240" y="405" fill="#edf2f7" font-size="29" font-weight="700">Next.js product</text>
+    <text x="1240" y="452" fill="#a6b0bd" font-size="19">Trace explorer</text>
+    <text x="1240" y="486" fill="#a6b0bd" font-size="19">Timeline inspection</text>
+    <text x="1240" y="520" fill="#a6b0bd" font-size="19">Comparison</text>
+  </g>
+  <rect x="460" y="665" width="660" height="185" fill="#11151a" stroke="#39434f"/>
+  <text x="500" y="715" fill="#f5c66a" font-family="monospace" font-size="17">DETERMINISTIC DIAGNOSTICS</text>
+  <text x="500" y="766" fill="#edf2f7" font-family="Arial, sans-serif" font-size="27" font-weight="700">Explainable rules run against durable trace evidence.</text>
+  <text x="500" y="811" fill="#a6b0bd" font-family="Arial, sans-serif" font-size="19">Repeated calls · tool errors · malformed arguments · context growth · latency · cost</text>
+  <path d="M790 550V665" stroke="#f5c66a" stroke-width="3" stroke-dasharray="10 9"/>
+  <text x="100" y="930" fill="#84909d" font-family="monospace" font-size="17">SYNTHETIC DEMO DATA / NO PROPRIETARY TRACES / V1</text>
+</svg>
