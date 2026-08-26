@@ -47,6 +47,13 @@ test("primary navigation includes the specified destinations", async () => {
   assert.match(header, /aria-label="Primary"/);
 });
 
+test("contact uses the user-verified email address", async () => {
+  const contact = await source("components/home/contact.tsx");
+
+  assert.match(contact, /mailto:goal\.works\.box@gmail\.com/);
+  assert.doesNotMatch(contact, /Contact channels will be added/);
+});
+
 test("design tokens and reduced-motion handling are present", async () => {
   const styles = await source("app/globals.css");
 

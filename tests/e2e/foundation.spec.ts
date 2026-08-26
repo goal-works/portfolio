@@ -53,6 +53,10 @@ test("Stage 2 sections and flagship projects render in the required order", asyn
     await expect(project).toContainText("Validated V1 · product evidence available");
     await expect(project.getByRole("link", { name: "View case study" })).toBeVisible();
   }
+
+  await expect(
+    page.getByRole("link", { name: /goal\.works\.box@gmail\.com/ }),
+  ).toHaveAttribute("href", "mailto:goal.works.box@gmail.com");
 });
 
 test("work index lists every flagship case study in order", async ({ page }) => {
@@ -288,7 +292,9 @@ test("hero and approved positioning content are visible", async ({ page }) => {
   );
   await expect(page.getByText("AI systems need more than demos.")).toBeVisible();
   await expect(page.getByText("I'm Kazuki—James in English.")).toBeVisible();
-  await expect(page.locator('a[href^="mailto:"]')).toHaveCount(0);
+  await expect(
+    page.locator('a[href="mailto:goal.works.box@gmail.com"]'),
+  ).toHaveCount(1);
 });
 
 test("metadata uses approved content without an invented canonical URL", async ({

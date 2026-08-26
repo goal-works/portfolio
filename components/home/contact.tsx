@@ -18,9 +18,13 @@ export function Contact() {
             I&apos;m interested in technically challenging collaboration across AI
             engineering, AI evaluation, SaaS, and full-stack systems.
           </p>
-          <p className="mt-10 max-w-[58ch] border-l-2 border-accent pl-5 font-mono text-xs uppercase leading-relaxed tracking-[0.1em] text-muted">
-            Contact channels will be added when verified details are supplied.
-          </p>
+          <a
+            className="mt-10 inline-flex min-h-11 items-center gap-4 border-b border-accent pb-1 font-mono text-xs uppercase tracking-[0.12em] transition-colors hover:border-primary"
+            href="mailto:goal.works.box@gmail.com"
+          >
+            goal.works.box@gmail.com
+            <span aria-hidden="true">↗</span>
+          </a>
         </div>
       </Container>
     </Section>
