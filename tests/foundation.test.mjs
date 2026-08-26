@@ -84,10 +84,10 @@ test("flagship project evidence remains factual", async () => {
   assert.equal((projects.match(/repository: "https:\/\/github\.com\/goal-works\//g) ?? []).length, 4);
   assert.doesNotMatch(projects, /demo:/);
   assert.match(projects, /slug: "evalforge"[\s\S]*year: "2026"/);
-  assert.match(projects, /cover: "\/projects\/evalforge\/dashboard\.png"/);
-  assert.match(projects, /cover: "\/projects\/agentscope\/overview\.png"/);
-  assert.match(projects, /cover: "\/projects\/estate-ai\/discovery\.png"/);
-  assert.match(projects, /cover: "\/projects\/launchkit-ai\/dashboard\.png"/);
+  assert.match(projects, /cover: "\/projects\/evalforge\/dashboard\.webp"/);
+  assert.match(projects, /cover: "\/projects\/agentscope\/overview\.webp"/);
+  assert.match(projects, /cover: "\/projects\/estate-ai\/discovery\.webp"/);
+  assert.match(projects, /cover: "\/projects\/launchkit-ai\/dashboard\.webp"/);
   assert.equal((projects.match(/year: "/g) ?? []).length, 4);
 });
 

@@ -15,7 +15,6 @@ export function ProjectVisual({ project }: ProjectVisualProps) {
         src={project.cover}
         alt={project.screenshots[0]?.alt ?? `${project.title} product interface`}
         fill
-        priority
         sizes="(min-width: 1440px) 960px, (min-width: 768px) 66vw, 100vw"
         className="object-cover object-top"
       />

@@ -25,6 +25,7 @@ export const metadata: Metadata = {
   applicationName: "James Portfolio",
   authors: [{ name: "Kazuki (James)" }],
   creator: "Kazuki (James)",
+  referrer: "strict-origin-when-cross-origin",
   alternates: metadataBase ? { canonical: "/" } : undefined,
   openGraph: {
     type: "website",
@@ -80,6 +81,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
 
   return (
     <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
+      <head>
+        <meta
+          httpEquiv="Content-Security-Policy"
+          content="default-src 'self'; base-uri 'self'; connect-src 'self'; font-src 'self'; form-action 'self'; img-src 'self' data:; object-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; upgrade-insecure-requests"
+        />
+      </head>
       <body className="min-h-dvh bg-background font-sans text-primary antialiased">
         <script
           type="application/ld+json"

@@ -56,7 +56,7 @@ After publication, verify the real HTTPS deployment with:
 npm run verify:live
 ```
 
-The export includes `.nojekyll` so GitHub Pages serves Next.js `_next` assets correctly. Server-mode builds retain the configured security headers; the static deployment uses GitHub Pages' HTTPS and response policy.
+The export includes `.nojekyll` so GitHub Pages serves Next.js `_next` assets correctly. It also embeds a restrictive content-security policy and referrer policy in the HTML. GitHub Pages enforces HTTPS and HSTS, but it does not provide repository-level custom response headers; headers such as `frame-ancestors` and `X-Content-Type-Options` would require a host or reverse proxy with header configuration.
 
 ## Validation
 
@@ -74,6 +74,10 @@ suite separately with `npm run test:e2e`.
 The current portfolio browser suite contains 33 tests covering primary content routes,
 responsive layouts, keyboard navigation, accessibility, SEO endpoints, security headers,
 and honest evidence states.
+
+The live homepage was measured on August 26, 2026 with Lighthouse 12.8.2: 97
+performance, 100 accessibility, 100 best practices, and 100 SEO. Project screenshots
+are served as WebP assets; the optimized set is 54% smaller than its PNG sources.
 
 The production script uses Next.js's supported Webpack builder because the managed
 development environment does not permit Turbopack's internal PostCSS IPC port. The

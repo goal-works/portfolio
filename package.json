@@ -8,6 +8,7 @@
     "build:pages": "PORTFOLIO_STATIC_EXPORT=true NEXT_PUBLIC_SITE_URL=https://goal-works.github.io next build --webpack && node scripts/prepare-pages.mjs",
     "start": "next start",
     "lint": "eslint . --max-warnings=0",
+    "optimize:images": "node scripts/optimize-project-images.mjs",
     "typecheck": "tsc --noEmit",
     "test": "node --test",
     "test:e2e": "playwright test",

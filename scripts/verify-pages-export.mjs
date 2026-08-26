@@ -135,6 +135,18 @@ try {
     throw new Error(`Unexpected social image URL: ${socialImage ?? "missing"}`);
   }
 
+  const referrer = await page.locator('meta[name="referrer"]').getAttribute("content");
+  if (referrer !== "strict-origin-when-cross-origin") {
+    throw new Error(`Unexpected referrer policy: ${referrer ?? "missing"}`);
+  }
+
+  const contentSecurityPolicy = await page
+    .locator('meta[http-equiv="Content-Security-Policy"]')
+    .getAttribute("content");
+  if (!contentSecurityPolicy?.includes("object-src 'none'")) {
+    throw new Error("Static export is missing its document security policy");
+  }
+
   await page.getByRole("link", { name: "View case study" }).first().click();
   await page.waitForURL(`${baseUrl}/work/evalforge/`);
   if (failedResources.length > 0) {

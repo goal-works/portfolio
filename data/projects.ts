@@ -54,22 +54,22 @@ export const flagshipProjects: Project[] = [
     featured: true,
     status: "building",
     repository: "https://github.com/goal-works/evalforge",
-    cover: "/projects/evalforge/dashboard.png",
+    cover: "/projects/evalforge/dashboard.webp",
     screenshots: [
       {
-        src: "/projects/evalforge/dashboard.png",
+        src: "/projects/evalforge/dashboard.webp",
         alt: "EvalForge dashboard showing evaluation volume, average pass rate, active benchmarks, and recent completed runs.",
         caption:
           "The seeded dashboard summarizes four reproducible historical runs and their aggregate outcomes.",
       },
       {
-        src: "/projects/evalforge/benchmark-detail.png",
+        src: "/projects/evalforge/benchmark-detail.webp",
         alt: "EvalForge Operational Reasoning benchmark with eight tasks and controls for configuring a new evaluation.",
         caption:
           "A benchmark binds versioned tasks and evaluator contracts to a selected agent and attempt count.",
       },
       {
-        src: "/projects/evalforge/run-detail.png",
+        src: "/projects/evalforge/run-detail.webp",
         alt: "EvalForge run detail showing aggregate metrics, failed task output, evaluator reasoning, and execution events.",
         caption:
           "The flagship run view keeps failed output, evaluator reasoning, and the ordered execution timeline together.",
@@ -108,22 +108,22 @@ export const flagshipProjects: Project[] = [
     featured: true,
     status: "building",
     repository: "https://github.com/goal-works/agentscope",
-    cover: "/projects/agentscope/overview.png",
+    cover: "/projects/agentscope/overview.webp",
     screenshots: [
       {
-        src: "/projects/agentscope/overview.png",
+        src: "/projects/agentscope/overview.webp",
         alt: "AgentScope overview showing six synthetic agent executions, success rate, latency, cost, recent traces, and common tools.",
         caption:
           "The overview aggregates durable execution metrics from six deterministic synthetic trace scenarios.",
       },
       {
-        src: "/projects/agentscope/trace-detail.png",
+        src: "/projects/agentscope/trace-detail.webp",
         alt: "AgentScope trace detail showing an ordered event timeline, repeated tool-call diagnostic, span hierarchy, tokens, latency, and cost.",
         caption:
           "The flagship trace keeps ordered events, inspectable payloads, hierarchy, metrics, and explainable loop evidence together.",
       },
       {
-        src: "/projects/agentscope/comparison.png",
+        src: "/projects/agentscope/comparison.webp",
         alt: "AgentScope trace comparison showing baseline and candidate execution metrics and final results side by side.",
         caption:
           "Two persisted traces can be compared across result, latency, tokens, cost, errors, events, and diagnostics.",
@@ -164,28 +164,28 @@ export const flagshipProjects: Project[] = [
     featured: true,
     status: "building",
     repository: "https://github.com/goal-works/estate-ai",
-    cover: "/projects/estate-ai/discovery.png",
+    cover: "/projects/estate-ai/discovery.webp",
     screenshots: [
       {
-        src: "/projects/estate-ai/discovery.png",
+        src: "/projects/estate-ai/discovery.webp",
         alt: "EstateAI discovery view showing six synthetic properties, deterministic cap rates, filters, and an offline MapLibre map.",
         caption:
           "Discovery keeps original synthetic records and clearly labeled modeled metrics beside an offline map with no listing or tile dependency.",
       },
       {
-        src: "/projects/estate-ai/property-analysis.png",
+        src: "/projects/estate-ai/property-analysis.webp",
         alt: "EstateAI Juniper Row Duplex detail showing synthetic property facts, deterministic return metrics, and property overview.",
         caption:
           "The property view leads with supplied assumptions, deterministic outputs, and persistent synthetic-data disclosure.",
       },
       {
-        src: "/projects/estate-ai/scenario-analysis.png",
+        src: "/projects/estate-ai/scenario-analysis.webp",
         alt: "EstateAI scenario table comparing conservative, base, optimistic, and custom investment assumptions.",
         caption:
           "Built-in and user-defined scenarios run through the same Decimal-based calculation boundary for comparable outputs.",
       },
       {
-        src: "/projects/estate-ai/comparison.png",
+        src: "/projects/estate-ai/comparison.webp",
         alt: "EstateAI side-by-side comparison showing consistent investment metrics for three synthetic properties.",
         caption:
           "Comparison aligns price, income, cash flow, NOI, cap rate, cash-on-cash return, DSCR, and break-even occupancy.",
@@ -225,28 +225,28 @@ export const flagshipProjects: Project[] = [
     featured: true,
     status: "building",
     repository: "https://github.com/goal-works/launchkit-ai",
-    cover: "/projects/launchkit-ai/dashboard.png",
+    cover: "/projects/launchkit-ai/dashboard.webp",
     screenshots: [
       {
-        src: "/projects/launchkit-ai/dashboard.png",
+        src: "/projects/launchkit-ai/dashboard.webp",
         alt: "LaunchKit AI operational overview for the Northstar synthetic tenant showing members, workspaces, usage, budget warning, subscription state, and notification evidence.",
         caption:
           "The control-plane overview keeps the active tenant, server-resolved role, synthetic disclosure, usage, budget policy, and operational state visible together.",
       },
       {
-        src: "/projects/launchkit-ai/members.png",
+        src: "/projects/launchkit-ai/members.webp",
         alt: "LaunchKit AI people and permissions screen showing five fictional role profiles, a server-authorized invitation form, and a pending invitation.",
         caption:
           "Membership administration exposes all five role profiles while the service independently enforces invitation permissions and tenant ownership.",
       },
       {
-        src: "/projects/launchkit-ai/api-keys.png",
+        src: "/projects/launchkit-ai/api-keys.webp",
         alt: "LaunchKit AI API key screen showing a non-secret key prefix, active state, revocation control, and one-time issue workflow.",
         caption:
           "API-key plaintext is revealed only at creation; durable snapshots retain a digest and short identification prefix instead.",
       },
       {
-        src: "/projects/launchkit-ai/webhooks.png",
+        src: "/projects/launchkit-ai/webhooks.webp",
         alt: "LaunchKit AI webhook screen showing a fictional HTTPS endpoint, one-time signing-secret registration, and signed synthetic delivery history.",
         caption:
           "Per-endpoint signing keys, Redis-ready jobs, and delivery evidence make the asynchronous boundary inspectable without sending external traffic.",
