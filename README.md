@@ -53,9 +53,9 @@ npm run verify:pages
 For a custom production host, build and verify the artifact against that exact origin:
 
 ```bash
-NEXT_PUBLIC_SITE_URL=https://goal.works.com npm run build:pages
-PORTFOLIO_EXPECTED_SITE_URL=https://goal.works.com npm run verify:pages
-PORTFOLIO_VERIFY_URL=https://goal.works.com npm run verify:secure-live
+NEXT_PUBLIC_SITE_URL=https://your-owned-host.example npm run build:pages
+PORTFOLIO_EXPECTED_SITE_URL=https://your-owned-host.example npm run verify:pages
+PORTFOLIO_VERIFY_URL=https://your-owned-host.example npm run verify:secure-live
 ```
 
 Do not switch the canonical origin or GitHub Pages custom-domain setting until the
